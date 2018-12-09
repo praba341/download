@@ -1,0 +1,55 @@
+<div class="dashboard-body">
+  <div  class="col-sm-1 side-menu">
+    <sidemenu></sidemenu>
+  </div>
+  <div class="col-sm-11 list">
+    <div class="header row">
+      <div class="col-sm-4">
+        <p>Admin</p>
+      </div>
+      <div class="col-sm-7 right-icon">
+      </div>
+    </div>
+    <div class="row ticket-head">
+      <div class="col-sm-12">
+        <div class="pull-right">
+          <p class="synch">
+            <button class="btn btn-info btn-bold" (click)="createNewReport()"> Create New report </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row ticket-table">
+      <table class="table ticket-table" [mfData]="repots" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" >
+          <thead>
+            <tr> 
+              <th> <mfDefaultSorter by="sno" [mfShowSortableArrows]="true">S.no</mfDefaultSorter></th>
+              <th > <mfDefaultSorter by="reportName">Report FD Name</mfDefaultSorter></th>
+              <th> <mfDefaultSorter by="link">Reort FD Link</mfDefaultSorter> </th>
+              <th > <mfDefaultSorter by="subject">Subject</mfDefaultSorter></th>
+              <th> <mfDefaultSorter by="fromName">From Name</mfDefaultSorter></th>
+              <th > <mfDefaultSorter by="action">Action</mfDefaultSorter></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of mf.data; let i = index"> 
+                <td>{{repots.indexOf(item) + 1}}</td>
+                <td>{{item.report_name}}</td>
+                <td>{{item.report_fd_link}}</td>
+                <td>{{item.from_name}}</td>
+                <td>{{item.subject}}</td>
+                <td><img src="assets/icons/view.png" alt="" (click)="viewReportDetails(item)"></td>
+            </tr>
+            <tr  *ngIf="repots.length == 0">
+              <td colspan="100%" align="center"> {{responseMessage}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="11"><mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator></td>
+            </tr>
+          </tfoot>
+        </table>
+    </div>
+  </div>
+</div>

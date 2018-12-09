@@ -1,0 +1,48 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" (click)="close()" >&times;</button>
+            <p *ngIf="agent_type==1">View Ticket</p>
+            <p *ngIf="agent_type==2">Social Discovery Initiation</p>
+      </div> 
+      <div class="modal-body new-ticket-body">
+          <div class="row">
+              <div class="col-sm-5">
+                  <p>Coustomer Name </p>
+              </div>
+              <div class="col-sm-7">
+                    <input value={{record.customer_name}} disabled>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-5">
+                  <p>Source of Complaint URL </p>
+              </div>
+              <div class="col-sm-7">
+                    <textarea disabled>{{record.complaint_url}}</textarea>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-5">
+                  <p>Notes from Lenovo </p>
+              </div>
+              <div class="col-sm-7">
+                    <textarea name="" id=""  rows="5" disabled>{{record.notes}}</textarea>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-5">
+                  <p>Identify the Type? </p>
+              </div>
+              <div class="col-sm-7">
+                    <!-- <select name="" id="" disabled>
+                        <option value="1">Customer Service</option>
+                    </select> -->
+                    <input type="text" value="{{record.service_type_label}}" disabled>
+              </div>
+          </div>
+      </div>
+    </div> 
+</div>    
+    
+    

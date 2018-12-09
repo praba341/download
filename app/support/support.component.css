@@ -1,0 +1,79 @@
+.required {color:red; font-weight:bold}
+.center-block {float:none}
+.human {margin: 0 0 0 12px}
+/* .bg-page {background:#000;min-height:635px;} */
+.bg-page {min-height:635px;}
+.bg-header {background:#e2231a;}
+.bg-header h3 {color:#fff; padding:20px 0px 20px 30px; font-size:20px; margin: 0px; display: inline-block;}
+.bg-content {background:#fafafa; padding-top:20px; padding-bottom:30px; min-height:400px; }
+.bg-content h3 {font-size:16px; font-weight:600}
+.form-horizontal .control-label {text-align:left !important; color: #212020 !important; font-size: 13px;}
+.btn-sty { padding-right: 30px; padding-top: 21px;}
+.close-circle { width: 60px; height: 60px; border-radius: 50%; background: #fff; position: absolute; right: 10%; margin-top: -1%; }
+.close-circle button { padding: 10px 17px 0px 0px; font-size: 40px;  outline: none;}
+.message-bg { background: #fcfcfc; min-height: 120px;}
+.view-btn {  padding: 5px 15px; border-radius: 4px; color: #fff; font-size: 22px;}
+.close {opacity:1;}
+.left-con { padding-right: 20px;}
+.left-con h3 { font-size: 16px; color:#272626; font-weight: 600; line-height:22px; }
+.left-con h3 a {color:#e2231a;    word-wrap: break-word;}
+.left-con .cont-message {color:#7d7d7d; padding-top: 25px;}
+.left-con .regards, .left-con .mail {color:#e2231a}
+.circle p { color: #aeb1b9} 
+.circle {  -webkit-box-shadow: 10px 0 5px -2px #888;  box-shadow: 0px 3px 5px 0px #bcbcbc }
+.sno{ text-align: center}
+.sno .circle{width: 30px; height: 30px; border-radius: 50%; background: #fff; padding: 5px; backface-visibility: #ffffff}
+.usericon { padding: 0 }
+.usericon input{   padding-left:65px; height: 40px; }
+/* .usericon span{ opacity:1;  padding-left:8px; padding-top:9px; position: absolute; font-weight: 800; z-index: 999;} */
+.usericon span { font-weight: bold; word-wrap: break-word }
+.clear {clear:both; margin:0px; padding:0px;}
+[class*="col-"] {  float: left;}
+[class*="col-md-"] {  float: left;}
+/*praba start*/
+.footer-message textarea { width: 100%; }
+.footer-message a { float: right; padding-right: 5%; color: gray;}
+.footer-message img { float: right; width: 20px; margin-right: 115px;}
+#attachements { height: 100%; }
+.errorMessage { position: relative; }
+.errorMessage .close {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    right: 16px;
+    font-size: 21px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    font-weight: 700;
+    line-height:1;
+    padding: 0;
+cursor: pointer;
+background: 0 0;
+border: 0;
+}
+/*praba end*/
+
+
+@media screen and (max-width: 768px) and (min-width: 481px) { 
+    .right-con {width:100%}
+    .input-field {width: 60%;}
+    .form-horizontal .control-label { width: 25%;  padding: 0px;  line-height: 23px; }  
+    }
+    @media screen and (max-width: 480px) and (min-width: 320px) { 
+    .bg-header h3 {font-size:15px; padding-left:10px;font-weight: 600;}
+    .input-field {width: 56%;}
+    .bg-header .title { width: 47%;}
+    
+    .form-horizontal .control-label { width: 25%;  padding: 0px;  line-height: 23px; }  
+    }
+
+    @media (min-width: 1000px){
+        .container {
+            margin-top: 1%;
+            width: 1000px;
+        }  
+        
+    }
+   

@@ -1,0 +1,51 @@
+<div class="col-sm-12 login-body">
+  <div class="row">
+      <div class="col-sm-6 description">
+          <div class="row">
+              <img src="assets/icons/lenovo_logo.png" class="lenovo_icon" alt="">
+          </div>
+          <div class="row">
+              <p>
+                  Voice of Customer can solve the problem of the Customer, being upfront about potential issues with 
+                  Lenovo products, thinking ahead to anticipate problems that are out of control. Customers today require
+                   a high level of personalization from brands. Voice of Customer can solve issues by generating content 
+                   that is specific to the exact product that a customer has. 
+              </p>
+          </div>  
+      </div>
+      <div class="col-sm-6 login-form">
+        <div class="row">
+          <h1>Voice of Customer</h1>
+        </div>
+        <div class="row login-form-body">
+           <div class="col-sm-12 login-form-inputs">
+              <div class="row">
+                <input class="username user-val" type="text" placeholder="Username" [(ngModel)]="username" (ngModelChange)="hideError()" (keyup)="$event.keyCode == 13 ? login() : null" >
+              </div>
+              <div class="row">
+                  <input type={{password_type}} class='user-val' placeholder="Password" [(ngModel)]="password" (ngModelChange)="hideError()" (keyup)="$event.keyCode == 13 ? login() : null">
+                  <img class="eye-icon" src="assets/icons/eye_icon.png"  (click)="showPassword()" alt="">
+              </div>
+              <!-- <div class="row policy">
+                <div class="col-sm-1 chkb"><input type="checkbox" [(ngModel)]="policy" (change)="privacyPolicy($event)" (keyup)="$event.keyCode == 13 ? login() : null"></div>
+                <div class="col-sm-10 txt">I agree to the Lenovo <a href="https://www3.lenovo.com/ae/en/privacy/" target="_blank"> Privacy Policy</a></div>
+              </div> -->
+              <div class="row error" *ngIf="error">
+                <span>{{errorMessage}}</span>
+              </div>
+              <div class="row sign-in ">
+                <button (click)="login()">Sign In</button>
+              </div>
+              <div class="row">
+                <p><a>Forgot Password?</a></p>
+              </div>
+           </div>
+        </div>
+      </div> 
+  </div>
+
+  <div class="row">
+      <div class="policy"><p>© 2018   Lenovo. All rights reserved. <a href="https://www3.lenovo.com/ae/en/privacy/" target="_blank">Privacy</a></p></div>
+  </div>
+
+</div>

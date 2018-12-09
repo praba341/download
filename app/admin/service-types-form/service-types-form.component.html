@@ -1,0 +1,53 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+
+		<div>
+			<div class="modal-header">
+				<button type="button" class="close" (click)="close()" >&times;</button>
+				<p *ngIf="!formData.text1">{{formTitle}}</p>
+				<p *ngIf="formData.text1">{{formData.text1}}</p>
+			</div>
+
+			<div class="modal-body form-section">
+				<div *ngIf="isActiveForm">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="text1">Service Type Name <em>*</em></label>
+								<div class="input-icon">
+									<input type="text" placeholder="Enter Service Type Name" id="text1" [(ngModel)]="formData.text1" />
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="status">Status <em>*</em></label>
+								<div class="input-icon">
+									<select [(ngModel)]="formData.status" id="status">
+										<option value="1">Enable</option>
+										<option value="0">Disable</option>
+									</select>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>				
+
+				<div class="errorMessage text-center" *ngIf="errorMessage">
+					<button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button>
+					<div [innerHTML]="errorMessage"></div>
+				</div>
+				<div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+						
+			</div>
+
+			<div class="modal-footer" *ngIf="isActiveForm">
+				<button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+				<button type="button" class="btn btn-default btn-danger" (click)="createNew()">Save</button>
+			</div>
+		</div>
+
+	</div> 
+</div>    
+

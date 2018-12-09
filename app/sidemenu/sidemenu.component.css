@@ -1,0 +1,68 @@
+.dashboard-body {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: #fff;
+	min-height: 662px
+}
+.dashboard-body .side-menu {
+	min-height: 662px;
+	background: #2c2f43;
+	color: #fff;
+}
+.dashboard-body .side-menu .voc {
+	height: 75px;
+	background: #232638
+}
+.dashboard-body .side-menu .voc p {
+	font-size: 18px;
+	padding: 23px 0px;
+	font-weight: 600;
+	margin-bottom: 0px;
+}
+.dashboard-body .side-menu .voc img {
+	margin-top: 23px;
+	width: 30px
+}
+.dashboard-body .menu .voc img {
+	margin-top: 25px;
+	width: 30px;
+	color: #7e7e7e;
+}
+.dashboard-body .side-menu .voc-menu {
+	text-align: center;
+    padding: 25px 0px 25px 0px;
+}
+.dashboard-body .logout img{
+	width: 25px;
+    opacity: 0.7;
+}
+.dashboard-body .small-title {
+	padding-top: 23px;
+	font-weight: bold;
+}
+.dashboard-body .s-menu {
+	float: left;
+	padding-left: 30px;
+}
+.dashboard-body .small-title a {
+	font-size: 18px;
+	color: #fff;
+	font-weight: 600;
+}
+.dashboard-body .side-menu .voc .menu {
+	/* text-align: right */
+}
+.dashboard-body .side-menu .voc .menu a {
+	cursor: pointer;
+}
+.dashboard-body .side-menu .profile {
+	height: 80px;
+	background: #494d68
+}
+
+.dashboard-body .col-sm-3.side-menu {width:95%;}
+.dashboard-body .col-sm-1.side-menu {width:5%;}
+.dashboard-body .col-sm-9.list { width: 79.9%; }
+.dashboard-body .col-sm-11.list { width: 94.444444445%; }

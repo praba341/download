@@ -1,0 +1,44 @@
+.modal-dialog { width: 700px; }
+.header{ background: #cf3b3c ; }
+.header p{ text-align: center; color: #fff; font-size: 16px; font-weight: bold;}
+.modal-header .close { color: white; opacity: 1;}
+.popup-content span {font-size: 15px; padding-left: 5%;} 
+.popup-content em { color: #E2231A; font-weight: bold; font-size: 15px; }   
+.popup-content p { color: red; padding-left: 5%;     margin-top: -10px;}
+.popup-content .url { color: red; padding-left: 0 ; margin-top: 0 ; }
+.popup-content input { width: 95%; border-radius: 3px; border: 1px solid lightgray; padding: 4px;}   
+.modal { overflow: scroll !important}
+.popup-content .postNotes textarea, .popup-content .behaviour-input textarea { width: 90%; background: #eceef2; border: 1px solid lightgray; margin-left: 5%; resize: none; border-radius: 5px; padding: 5px; resize: none; margin-top: 2%; margin-bottom: 2%;}
+.popup-content .preview, .popup-content .rating { margin-top: 10px }
+.popup-content .behaviour { margin-top: 15px }
+.popup-content .preview button { width: 95%; font-weight: bold;  border: 1px solid lightgray; border-radius: 3px; padding: 5px;} 
+/* .popup-content .preview a { background: lightgray; color: #000; font-weight: bold;  border: 1px solid lightgray; border-radius: 3px; padding: 3% 38% 3% 37%;} */
+.popup-content .reason textarea { width: 90%; background: #eceef2; border: 1px solid lightgray; margin-left: 5%; resize: none; border-radius: 5px; padding: 5px; resize: none; margin-top: 2%; margin-bottom: 2%;}
+.link { background: #eceef2; margin: 2%; padding: 5px;}
+.link select { height: 30px; border: 1px solid lightgray; }
+.link span { padding: 6px; }
+.popup-content .post { text-align: center; width: 100%; }
+.popup-content .post button{ padding: 5px 20px 5px 20px; color: #fff; border: 1px; background: darkred; border-radius: 5px;} 
+
+.eye {
+    width: 13px;
+    height: 13px;
+    border: solid 1px #fff;
+    border-radius:  75% 15%;
+    position: relative;
+    transform: rotate(45deg);
+    margin-left: 63%;
+    position: absolute;
+    margin-top: 5px;
+  }
+  .eye:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: solid 1px #fff;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+  }

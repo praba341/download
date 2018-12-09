@@ -1,0 +1,127 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+
+		<div>
+			<div class="modal-header">
+				<button type="button" class="close" (click)="close()" >&times;</button>
+				<p>{{formData.firstname}} {{formData.lastname}}</p>
+			</div>
+
+			<div class="modal-body form-section">
+				<div *ngIf="isActiveForm">
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstname">First Name <em>*</em></label>
+								<div class="input-icon">
+									<input type="text" placeholder="Enter Name" id="firstname" [(ngModel)]="formData.firstname" />
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="lastname">Last Name</label>
+								<div class="input-icon">
+									<input type="text" placeholder="Enter Name" id="lastname" [(ngModel)]="formData.lastname" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="mobile">Mobile <em>*</em></label>
+								<div class="input-icon">
+									<input type="text" placeholder="Enter Mobile" id="mobile" [(ngModel)]="formData.mobile" />
+								</div>
+							</div>
+						</div>
+	
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="email">Email Id <em>*</em></label>
+								<div class="input-icon">
+									<input type="email" placeholder="Enter Email Id" id="email" [(ngModel)]="formData.email" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="role">Role <em>*</em></label>
+								<div class="input-icon">
+									<select [(ngModel)]="formData.role" id="role">
+										<option value="">Please select role</option>
+										<option value="{{item.code}}" *ngFor="let item of userRoles">{{item.text1}}</option>
+									</select>									
+								</div>
+							</div>
+						</div>
+	
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="status">Status <em>*</em></label>
+								<div class="input-icon">
+									<select [(ngModel)]="formData.status" id="status">
+										<option value="1">Enable</option>
+										<option value="0">Disable</option>
+									</select>									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr />
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="checkbox" value="1" id="changelogindetails" [(ngModel)]="formData.changelogindetails" />
+								<label for="changelogindetails">Change login details</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" *ngIf="formData.changelogindetails">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="password">Password <em>*</em></label>
+								<div class="input-icon">
+									<input type="password" placeholder="Enter password" id="password" [(ngModel)]="formData.password" />
+								</div>
+							</div>
+						</div>
+	
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="cpassword">Confirm Password <em>*</em></label>
+								<div class="input-icon">
+									<input type="password" placeholder="Enter confirm password" id="cpassword" [(ngModel)]="formData.cpassword" />
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>				
+
+				<div class="errorMessage text-center" *ngIf="errorMessage">
+					<button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button>
+					<div [innerHTML]="errorMessage"></div>
+				</div>
+				<div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+						
+			</div>
+
+			<div class="modal-footer" *ngIf="isActiveForm">
+				<button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+				<button type="button" class="btn btn-default btn-danger" (click)="updateUser()">Save</button>
+			</div>
+		</div>
+
+	</div> 
+</div>    
+

@@ -1,0 +1,152 @@
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" (click)="close()" >&times;</button>
+			<!-- <p *ngIf="results.length > 0">{{results[0].customer_name}}- VOC-{{results[0].ticket_id}}</p> -->
+			<p>{{record.customer_name}} - VOC-{{record.ticket_id}}</p>
+		</div>
+
+		<div class="modal-body">
+			<div class="ticket-details">
+				<div class="ticket-detail-row">
+					<div  class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Customer Name </label>
+								<div class="input-icon">
+									<span *ngIf='!editOption'>{{record.customer_name}}</span>  
+									<input type="text" *ngIf='editOption' [(ngModel)]='formData.customer_name'>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-5 url">
+							<div class="form-group">
+								<label>Complaint Url </label>
+								<div class="input-icon" *ngIf="record.complaint_url">
+									<span *ngIf='!editOption'>{{record.complaint_url}}</span>  
+									<input type="text" *ngIf='editOption' [(ngModel)]='formData.complaint_url'>
+								</div>
+								<div class="input-icon" *ngIf="!record.complaint_url">
+									No Complaint Url
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-1">
+							<div class="form-group">
+								<div class="input-icon">
+									<button class="btn btn-info btn-bold" (click)='edit(record)' *ngIf='!editOption' [disabled]="record.ticket_status == 8">Edit</button>
+									<button class="btn btn-info btn-bold" (click)='save()' *ngIf='editOption'>Save</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div  class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Service Type </label>
+								<div class="input-icon" *ngIf="record.service_type_label">
+									{{record.service_type_label}}
+								</div>
+								<div class="input-icon" *ngIf="!record.service_type_label">
+									No Service Type
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Issue posted in social media</label>
+								<div class="input-icon" *ngIf="record.notes">
+									<span *ngIf='!editOption'>{{record.notes}}</span>  
+									<input type="text" *ngIf='editOption' [(ngModel)]='formData.notes'>
+								</div>
+								<div class="input-icon" *ngIf="!record.notes">
+									Ticket created from customer
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div  class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Severity level</label>
+								<div class="input-icon" *ngIf="record.priority">
+									<span *ngIf='record.priority == 0'>No Severity level</span>
+									<span *ngIf='record.priority == 1'>Low</span>
+									<span *ngIf='record.priority == 2'>Medium</span>
+									<span *ngIf='record.priority == 3'>High</span>
+									<span *ngIf='record.priority == 4'>Urgent</span>
+								</div>
+								<div class="input-icon" *ngIf="!record.priority">
+									No Severity level
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group" *ngIf='record.reply_notes'>
+								<label> Notes Posted in Social Media </label>
+								<div class="input-icon">
+									{{record.reply_notes}}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group" *ngIf='record.reply_notes'>
+								<label> Group Type </label>
+								<div class="input-icon">
+									{{record.group_name}}
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group status" *ngIf='record.ticket_status'>
+								<label>Current Status :&nbsp;</label>
+								<span *ngIf='record.ticket_status == 2'>Open</span>
+								<span *ngIf='record.ticket_status == 3'>Pending</span>
+								<span *ngIf='record.ticket_status == 4'>Resolved</span>
+								<span *ngIf='record.ticket_status == 5'>Closed</span>
+								<span *ngIf='record.ticket_status == 6'>Waiting on customer</span>
+								<span *ngIf='record.ticket_status == 7'>Waiting to approve</span>
+								<span *ngIf="record.ticket_status == 8">Rejected</span>
+
+								<div class="input-icon">
+									<select [(ngModel)]="record_ticket_status" id="priority" #type="ngModel" required>
+										<option value="{{item.value}}" *ngFor="let item of status">{{item.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group" *ngIf='record.ticket_status'>
+								<br>
+								<div class="input-icon">
+									<button class="btn btn-info btn-bold" (click)='updateStatus(record)' *ngIf='!editOption' [disabled]="record.ticket_status == 7 || record.ticket_status == 8">Update status</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div  class="con-heading ticket-detail-row">
+					<span>{{conversationMsg}}</span>	
+				</div>
+				<div class="ticket-detail-row" *ngFor="let item of results; let i = index">
+					<p><b>Date and Time : <span class="created_time">{{item.client_created_on}}</span>, From : <span class="created_time">{{item.from_email}}</span> Customer Name : <span class="created_time">{{item.customer_name}}</span></b></p>
+					<p class="text">{{item.message}}</p>
+					<!-- <h5>{{item.customer_name}}</h5>
+					<h6><span>From Email - </span>{{item.from_email}}</h6>
+					<h6><span>CC Email - </span>{{item.cc_emails}}</h6>	 -->
+				</div>
+				<!-- <p *ngIf="results.length == 0" class="no-data">No conversation Found</p> -->
+				<div class="custom-toast" *ngIf="customToastMsg"><p>{{customToastMsg}}</p></div>
+			</div>
+		</div>			
+	</div> 
+</div>    
+

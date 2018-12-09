@@ -1,0 +1,102 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()" >&times;</button>
+          <p>{{reportData.report_name}}</p>
+        </div>
+
+        <div class="resMessage text-center" *ngIf="resMessage">
+          <div  [innerHTML]="resMessage"></div>
+          <button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button>
+        </div>
+  
+        <div class="modal-body form-section" *ngIf="!resMessage">
+          <div >
+  
+            <!-- <div class="row"> -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstname">Report Name <em>*</em></label>
+                  <div class="input-icon">
+                    <input type="text" placeholder="Enter Report Name" id="reportName" [(ngModel)]="formData.report_name" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="row"> -->
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="mobile">Subject <em>*</em></label>
+                    <div class="input-icon">
+                      <input type="text" placeholder="Enter Mobile" id="mobile" [(ngModel)]="formData.subject" />
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">From Name <em>*</em></label>
+                    <div class="input-icon">
+                      <input type="email" placeholder="Enter Email Id" id="email" [(ngModel)]="formData.from_name" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="schedule">Select schedule <em>*</em></label>
+                    <div class="input-icon">
+                      <!-- <input type="email" placeholder="Enter from name" id="email" [(ngModel)]="formData.schedule" /> -->
+                      <select [(ngModel)]="formData.schedule"  #type="ngModel" required>
+                          <option value="{{item.value}}" *ngFor="let item of schedule">{{item.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              <!-- </div> -->
+  
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="lastname">Report Link<em>*</em></label>
+                  <div class="input-icon">
+                    <textarea  placeholder="Enter Name" id="link" [(ngModel)]="formData.report_fd_link" ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="lastname">Message<em>*</em></label>
+                    <div class="input-icon">
+                      <textarea  placeholder="Enter Name" id="link" [(ngModel)]="formData.message" ></textarea>
+                    </div>
+                  </div>
+              </div>
+            <!-- </div> -->            
+
+            <div class="col-md-12">
+              <label for="firstname">Report email <em>*</em></label>
+              <div  *ngFor="let item of emails;let i = index">
+                <div class="row">
+                  <div class="col-sm-10">
+                      <input type="email" placeholder="Enter email" [(ngModel)]="item.email">
+                  </div>
+                  <div class="col-sm-2">
+                      <span class="glyphicon glyphicon-plus pointer" (click)="addEmail(i)"></span>
+                      <span (click)="deleteEmail(i)" class="pointer" *ngIf="i>0"><b>&#x2716;</b></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row smt">
+                <input type="submit" class="btn btn-info" value="Update" (click)="updateReport()">
+            </div>  
+            <div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+          </div>				 
+        </div>
+      </div>
+    </div> 
+  </div>    
+    

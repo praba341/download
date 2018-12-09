@@ -1,0 +1,137 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+  
+      <!--Ticket form start-->
+      <div>
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()">&times;</button>
+          <p>Approve Ticket</p>
+        </div>
+  
+        <!-- <form name="formData"> -->
+        <div class="modal-body form-section">
+          <div *ngIf="isActiveForm">
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="customer_name">Customer Name</label></p>
+              </div>
+              <div class="col-md-7">
+                <!-- <input type="text" placeholder="Enter Name" id="customer_name" [(ngModel)]="formData.customer_name" value="{{record.customer_name}}" #name="ngModel" required/> -->
+                 <!-- <span *ngIf="!name.valid && !name.pristine">Please enter customer name</span> -->
+                 <p >{{record.customer_name}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="customer_name">Customer Email</label></p>
+              </div>
+              <div class="col-md-7">
+                <!-- <input type="text" placeholder="Enter Name" id="customer_name" [(ngModel)]="formData.customer_name" value="{{record.customer_name}}" #name="ngModel" required/> -->
+                  <!-- <span *ngIf="!name.valid && !name.pristine">Please enter customer name</span> -->
+                  <p >{{record.email}}</p>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="customer_name">Old Tickets of this customer</label></p>
+              </div>
+              <div class="col-md-7">
+                <!-- <input type="text" placeholder="Enter Name" id="customer_name" [(ngModel)]="formData.customer_name" value="{{record.customer_name}}" #name="ngModel" required/> -->
+                  <!-- <span *ngIf="!name.valid && !name.pristine">Please enter customer name</span> -->
+                  <!-- VOC-{{item.ticket_id}} -->
+                  <div class="row" *ngFor='let item of oldTickets'>
+                    <span>VOC-{{item.ticket_id}}
+                      <span *ngIf="item.ticket_status == 2">(Status : Open)</span>
+                      <span *ngIf="item.ticket_status == 3">(Status : Pending)</span>
+                      <span *ngIf="item.ticket_status == 4">(Status : Resolved)</span>
+                      <span *ngIf="item.ticket_status == 5">(Status : Closed)</span>
+                      <span *ngIf="item.ticket_status == 6">(Status : Waiting on Customer)</span>
+                      <span *ngIf="item.ticket_status == 7">(Status : Waiting to approve)</span>
+                      <span *ngIf="item.ticket_status == 8">(Status : Rejected)</span>
+                    </span>
+                  </div>  
+                  <div *ngIf='oldTickets.length === 0'>No Tickets Found</div>   
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="complaint_url">Information about issue by customer</label></p>
+              </div>
+              <div class="col-md-7">
+                <!-- <input type="text" placeholder="Enter Url" [(ngModel)]="formData.complaint_url"  #url="ngModel" required/>
+                <span *ngIf="!url.valid && !url.pristine">Please enter url</span> -->
+                <p >{{record.message}}</p>
+              </div>
+            </div>
+<!--   
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="notes">Issue posted in social media<em>*</em></label></p>
+              </div>
+              <div class="col-md-7">
+                <textarea rows="5" placeholder="Enter Notes" id="notes" [(ngModel)]="formData.notes" #notes="ngModel" required></textarea>
+                <span *ngIf="!notes.valid && !notes.pristine">Please enter notes</span>
+              </div>
+            </div> -->
+  
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="service_type_id">Identify the Type? <em>*</em></label></p>
+              </div>
+              <div class="col-md-7">
+                <select [(ngModel)]="formData.service_type_id" id="service_type_id" #type="ngModel" required>
+                  <option value="" selected> Select the Identify Type</option>
+                  <option *ngFor="let item of ticketServiceTypes" [ngValue]='item'>{{item.text1}}</option>
+                </select>
+                <span *ngIf="!type.valid && !type.pristine">Select identify type</span>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="priority">Severity level <em>*</em></label></p>
+              </div>
+              <div class="col-md-7">
+                <select [(ngModel)]="formData.priority" id="priority" #type="ngModel" required>
+                  <option value="" selected>Please select severity level</option>
+                  <option value="{{item.value}}" *ngFor="let item of priortyList">{{item.name}}</option>
+                </select>
+                <span *ngIf="!type.valid && !type.pristine">Please select severity level</span>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-md-5">
+                <p><label for="priority">Select group type<em>*</em></label></p>
+              </div>
+              <div class="col-md-7 group">
+                <img src="assets/icons/loader.gif" *ngIf="!groupList">
+                <select [(ngModel)]="formData.group_id" id="group" #type="ngModel" *ngIf="groupList" required>
+                  <option value="" selected>Select group type</option>
+                  <option value="{{item.freshdesk_group_id}}" *ngFor="let item of groupList">{{item.name}}</option>
+                </select>
+                <span *ngIf="!type.valid && !type.pristine">Select group type</span>
+              </div>
+            </div>
+          </div>
+  
+          <div *ngIf="responseMsg" [innerHTML]="responseMsg"></div>
+          <div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+        </div>
+  
+        <div class="modal-footer" *ngIf="isActiveForm">
+          <button  class="btn btn-default" (click)="close()">Cancel</button>
+          <button class="btn btn-default btn-danger" (click)="approveTicket(record)" >Approve</button>
+          <button class="btn btn-default btn-danger" (click)="rejectTicket(record)" >Reject</button>
+        </div>
+      <!-- </form> -->
+      </div>
+      <!--Ticket form end-->
+  
+    </div> 
+  </div>    
+  
+  

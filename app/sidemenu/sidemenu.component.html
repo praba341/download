@@ -1,0 +1,58 @@
+<div class="dashboard-body">
+    <div class="side-menu">
+        <div class="row voc">
+          <div class="col-sm-12 menu small-title"> <span>VOC</span> </div>
+        </div>
+        <div class="row voc-menu link-pointer" *ngIf="admin">
+            <p class="tooltip--right" data-tooltip="Users">
+              <img src="assets/icons/user.png" [routerLink]="['/users']"  alt="">
+            </p>  
+        </div>
+        <div class="row voc-menu link-pointer" *ngIf="admin || marketAgent">
+            <p class="tooltip--right" data-tooltip="Admin Tickets">
+                <img src="assets/icons/ticket.png" [routerLink]="['/mytickets']"  alt="">
+            </p>    
+        </div>
+        <div class="row voc-menu link-pointer" *ngIf="admin">
+            <p class="tooltip--right" data-tooltip="Service Type">
+                <img src="assets/icons/service.png" [routerLink]="['/servicetypes']"   alt="">
+            </p>    
+        </div>
+        <div class="row voc-menu link-pointer" *ngIf="admin">
+            <p class="tooltip--right" data-tooltip="Knowledge Base">
+                <img src="assets/icons/kb.png" style="height: 30px; opacity: 0.8;" [routerLink]="['/kb']"   alt="">
+            </p>    
+        </div>
+        <div class="row voc-menu link-pointer" *ngIf="admin">
+            <p class="tooltip--right" data-tooltip="Report">
+                <img src="assets/icons/report.png"  [routerLink]="['/report']"   alt="">
+            </p>    
+        </div>
+        
+        <div class="row voc-menu link-pointer" *ngIf="iberisAgent">
+            <p class="tooltip--right" data-tooltip="Agent Tickets">
+                <img src="assets/icons/ticket.png" [routerLink]="['/dashboard']"  alt="">
+            </p>    
+        </div>
+        <!-- <div class="row voc-menu link-pointer" *ngIf="marketAgent || iberisAgent">
+            <p class="tooltip--right" data-tooltip="Dashboard">
+                <img src="assets/icons/dashboard.png"  alt="">
+            </p>  
+        </div> -->
+        <!-- <div class="row voc-menu link-pointer" >
+            <p class="tooltip--right" data-tooltip="Transaction" >
+                <img class="tooltip--right" src="assets/icons/transaction.png" alt="">
+            </p>
+        </div> -->
+        <div class="row voc-menu link-pointer logout"  (click)="logout()" >
+            <p class="tooltip--right" data-tooltip="Logout">
+                <img src="assets/icons/logout.png" alt="">
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,16 @@
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="email"], input[type="password"], select { height: 30px; }
+input[type="text"], input[type="email"], input[type="password"], select, textarea { width: 100%; padding: 5px 4px 6px; }
+.row { padding: 5px}
+.modal-content .form-section em { color: #E2231A; font-weight: bold; font-size: 15px; }
+.modal-header { background: #E2231A; }
+.modal-header p { text-align: center; color: #fff; font-weight: bold; font-size: 16px;}
+.modal-header button { color: #fff; opacity: 1}
+.modal-body { background: #fff; border-top: 0px; padding: 10px; }
+.modal-body input { border: 1px solid #dfe0e0; border-radius: 2px;}
+.modal-body select { border-radius: 2px; border: 1px solid #dfe0e0}
+.modal-body textarea { resize: none; border: 1px solid #dfe0e0;}
+.modal-footer { text-align: center; }
+.col-sm-5 { padding-right: 0; }
+
+.form-section label { font-weight: normal; }
+.smt { width: 100%; text-align: center }

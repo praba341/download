@@ -1,0 +1,28 @@
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], select { height: 30px; }
+input[type="text"], select, textarea { width: 100%; padding: 5px 4px 6px; }
+.row { padding: 10px}
+.modal-content .form-section em { color: #E2231A; font-weight: bold; font-size: 15px; }
+.modal-content .form-section span { color: red}
+.modal-header { background: #E2231A; }
+.modal-header p { text-align: center; color: #fff; font-weight: bold; font-size: 16px;}
+.modal-header button { color: #fff; opacity: 1}
+.modal-body { background: #fff; border-top: 0px; padding: 10px; }
+.modal-body input { border: 1px solid #dfe0e0; border-radius: 2px;}
+.modal-body select { border-radius: 2px; border: 1px solid #dfe0e0}
+.modal-body textarea { resize: none; border: 1px solid #dfe0e0;}
+.modal-body .url { word-wrap: break-word }
+.modal-footer { text-align: center; }
+.col-sm-5 { padding-right: 0; }
+
+.form-section label { font-weight: normal; }
+
+.ticket-detail-row { border:1px solid #DDE4ED; padding: 5px 8px 8px; display: block; color: #000; margin: 2px 0; }
+.ticket-detail-row h5 { margin: 5px 0; color: #23527c; font-size: 14px; }
+.ticket-detail-row h6 { margin: 5px 0; color: #999; font-size: 13px; }
+.ticket-detail-row h6 span { color: #000; font-weight: bold; }
+.ticket-detail-row .text { font-size: 13px; margin-top:2px; display: block; padding: 0; }
+.ticket-detail-row .created_time { color: #478FCA; font-size: 13px; }
+
+.con-heading { text-align: center; font-weight: bold; background: #E2231A; color: #fff }
+.status span { position: fixed }

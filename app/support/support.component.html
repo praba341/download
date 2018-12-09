@@ -1,0 +1,131 @@
+<div class="bg-page">
+	<div class="container">
+
+		<div class="row bg-header row">
+			<h3 class="col-md-8 title ">Voice of Customer <span>( RefId : VOC {{ticketResults.ticket_id}} ) </span></h3>
+			<div class="btn-sty col-md-4">
+				<button type="button" class="logo-brand close"><span class="view-btn ">Lenovo</span></button>
+			</div>
+			<div class="close-circle pointer" (click)="close()">
+				<button type="button" class="close" >&times;</button>
+			</div>
+		</div>
+		<div class="clear"> </div>
+		<div class="row bg-content">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="errorMessage text-center" *ngIf="errorMessage">
+						<button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button>
+						<div [innerHTML]="errorMessage"></div>
+					</div>
+
+					<div class="col-md-6 left-con ">
+						<h3> We have noticed that you have a problem with our product. This is based on the blog / complaint you have raised in the following URL <br> <a target="_blank" href="{{ticketResults.complaint_url}}">( {{ticketResults.complaint_url}} ) </a> </h3>
+						<p class="cont-message"> We thank you for your escalation of the issue and we will work on it earnestly and help in the resolution. </p>
+						<p class="regard"> Thanking You, </p>
+						<p class="mail"> Voice of Customer <br>support@voc-support.com </p>
+					</div>
+
+					<div class="col-md-6 form-horizontal right-con">
+						<h3>YOUR CONTACT INFORMATION</h3>
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>1</p></div></div>
+							<label for="last_name" class="col-md-4 control-label"> Name </label>
+							<div class="col-md-7 input-field">
+								<div class="col-md-4 usericon"><span >{{ticketResults.customer_name}}</span></div>
+								<div class="col-md-8">
+										<input type="text" class="form-control" id="last_name" [(ngModel)]="formData.last_name" placeholder="Enter Full Name" disabled/>
+								</div>
+								<!-- <span class="usericon"> -->	
+								<!-- </span> -->
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>2</p></div></div>
+							<label for="phone" class="col-md-4 control-label"> Phone Number </label>
+							<div class="col-md-7 input-field">
+								<input type="text" class="form-control" id="phone" [(ngModel)]="formData.phone" placeholder="Enter Phone Number" disabled />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>3</p></div></div>
+							<label for="email" class="col-md-4 control-label"> Email </label>
+							<div class="col-md-7 input-field">
+								<input type="email" class="form-control" id="email" [(ngModel)]="formData.email" placeholder="Enter Email Id" disabled/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>4</p></div></div>
+							<label for="category_name" class="col-md-4 control-label"> Product Category </label>
+							<div class="col-md-7 input-field">
+								<input type="text" class="form-control" id="category_name" [(ngModel)]="formData.category_name" placeholder="Enter Product Category" disabled />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>5</p></div></div>
+							<label for="product_name" class="col-md-4 control-label"> Product Model </label>
+							<div class="col-md-7 input-field">
+									<input type="text" class="form-control" id="product_name" [(ngModel)]="formData.product_name" placeholder="Enter Product Model" disabled/>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>6</p></div></div>
+							<label for="product_name" class="col-md-4 control-label"> Country </label>
+							<div class="col-md-7 input-field">
+									<input type="text" class="form-control" id="product_name" [(ngModel)]="formData.country_name" placeholder="Enter country" disabled/>
+							</div>
+						</div>	
+
+						<div class="form-group">
+							<div class="col-md-1 sno"><div class="circle"><p>7</p></div></div>
+							<label for="product_name" class="col-md-4 control-label"> State/City </label>
+							<div class="col-md-7 input-field">
+									<input type="text" class="form-control" id="product_name" [(ngModel)]="formData.state_name" placeholder="Enter city" disabled/>
+							</div>
+						</div>	
+
+						<div class="form-group" *ngIf="formData.customer_respond == 0 || formData.attachements">
+							<div class="col-md-1 sno"><div class="circle"><p>6</p></div></div>
+							<label for="attachements" class="col-md-4 control-label"> Attachments </label>
+							<div class="col-md-7 input-field">
+								<input type="file" class="form-control" id="attachements" *ngIf="formData.customer_respond == 0" [(ngModel)]="formData.attachements" disabled/>
+								<img src="{{formData.attachements}}" width="30px" height="30px"*ngIf="formData.customer_respond != 0" alt=""> 
+								<!-- <button>Preview</button> -->
+							</div>
+						</div>
+
+					</div>	
+				</div>
+
+				<!--Message part start-->
+				<div class="row footer-message">
+					<div class="col-md-12">
+
+						<div class="form-group">
+							<div>
+								<label for="message" class="control-label"> Please provide any additional information to help serve you better </label>
+							</div>
+							<div>
+								<textarea rows="4" class="form-control" placeholder="Please provide any additional information on the complaint" id="message" [(ngModel)]="formData.message" disabled></textarea>
+							</div>
+						</div>	
+
+						<div class="form-group col-md-12 text-center" *ngIf="ticketAllowToPost">
+								<button type="button" class="btn btn-default btn-danger" (click)="submitTicket()">Submit Ticket to Lenovo</button>
+						</div>
+					</div>
+					<img src="assets/icons/loader.gif" *ngIf="!formData.tiny_url">
+					<a target="_blank" href="{{formData.tiny_url}}">{{formData.tiny_url}}</a>
+					<!-- <span>{{formData.tiny_url}}</span> -->
+				</div>
+				<!--Message part end-->
+			</div>
+		</div>
+	</div> <!--end container-->
+</div>

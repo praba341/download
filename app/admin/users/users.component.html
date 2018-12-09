@@ -1,0 +1,54 @@
+<div class="dashboard-body">
+  <div  class="col-sm-1 side-menu">
+    <sidemenu></sidemenu>
+  </div>
+  <div class="col-sm-11 list">
+    <div class="header row">
+      <div class="col-sm-4">
+        <p>Admin</p>
+      </div>
+      <div class="col-sm-7 right-icon">
+      </div>
+    </div>
+    <div class="row ticket-head">
+      <div class="col-sm-12">
+        <div class="pull-right">
+          <p class="synch">
+            <button class="btn btn-info btn-bold" (click)="createNewUser()"> Create New user </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row ticket-table">
+      <table class="table ticket-table" [mfData]="users" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" >
+          <thead>
+            <tr> 
+              <th> <mfDefaultSorter by="sno" [mfShowSortableArrows]="true">S.no</mfDefaultSorter></th>
+              <th > <mfDefaultSorter by="Username">Username</mfDefaultSorter></th>
+              <th> <mfDefaultSorter by="fullname">Full Name</mfDefaultSorter> </th>
+              <th > <mfDefaultSorter by="role">Role</mfDefaultSorter></th>
+              <th> <mfDefaultSorter by="mobile">Mobile</mfDefaultSorter></th>
+              <th > <mfDefaultSorter by="cd">Created Date</mfDefaultSorter></th>
+              <th > <mfDefaultSorter by="action">Action</mfDefaultSorter></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of mf.data; let i = index"> 
+                <td>{{users.indexOf(item) + 1}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.firstname}} {{item.lastname}}</td>
+                <td>{{item.role_label}}</td>
+                <td>{{item.mobile}}</td>
+                <td>{{item.created_on}}</td>
+                <td><button type="button" class="btn btn-default edit-btn" (click)="editUser(item)">Edit</button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="11"><mfBootstrapPaginator [rowsOnPageSet]="[5,10]"></mfBootstrapPaginator></td>
+            </tr>
+          </tfoot>
+        </table>
+    </div>
+  </div>
+</div>

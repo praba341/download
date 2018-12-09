@@ -1,0 +1,61 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()" >&times;</button>
+          <p>Add Link</p>
+        </div>
+
+        <div class="resMessage text-center" *ngIf="resMessage">
+            <div  [innerHTML]="resMessage"></div>
+            <!-- <button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button> -->
+        </div>
+        <div class="modal-body form-section" *ngIf="!resMessage">
+          <div >
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="linkname">Link name<em>*</em></label>
+                  <div class="input-icon">
+                    <input type="text" placeholder="Enter Link Name" id="linkName" [(ngModel)]="formData.kb_name" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="link">Link<em>*</em></label>
+                    <div class="input-icon">
+                      <input type="text" placeholder="Enter Link" id="link" [(ngModel)]="formData.kb_link" />
+                    </div>
+                  </div>
+              </div>
+            <!-- </div> -->            
+
+            <div class="col-md-12">
+                <div class="form-group">
+                  <label for="lewords">Kewords<em>*</em></label>
+                  <div class="input-icon">
+                    <div *ngFor="let item of formData.kb_keywords_arr">
+                        <span>{{item.val}}</span>
+                        <p></p>
+                    </div>
+                    <br>
+                    <input type="text" placeholder="Enter Keywords" id="link" [(ngModel)]="formData.kb_keywords" (keyup.enter)="valEnter()"/> <br>     
+                    <!-- <textarea id="likewordsnk" [(ngModel)]="formData.kb_keywords_arr" ></textarea>  -->
+                  </div>
+                </div>
+              </div>
+
+            <div class="row smt">
+                <input type="submit" class="btn btn-info" value="Save" (click)="saveLink()">
+            </div>  
+            <div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+          </div>				 
+        </div>
+      </div>
+    </div> 
+  </div>   
+  
+  
+  
+    

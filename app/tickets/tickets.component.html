@@ -1,0 +1,176 @@
+<div class="dashboard-body">
+	<div class="fixedCenterMsg" *ngIf="fixedCenterMsg"><p>{{fixedCenterMsg}}</p></div>
+	
+	<!--Notification start-->
+	<div class="notification-count" *ngIf="notification.total_count > 0">
+    <div class="alert alert-success">
+      <p *ngIf="notification.notify_count > 0"><strong>{{notification.notify_count}}</strong> {{notification.notify_title}}</p>
+      <p *ngIf="notification.cutomer_notify_count > 0"><strong>{{notification.cutomer_notify_count}}</strong> {{notification.cutomer_notify_title}}</p>
+        {{notification.message}}
+      <button type="button" class="close" data-dismiss="alert" (click)="notificationClosed()">x</button>
+    </div>
+	</div>
+	<!--Notification end-->	
+	<div class="row" style="margin-right: 0px !important">
+    <div class="col-sm-12 ticket-body">
+      <div class="col-sm-1 side-menu">
+          <sidemenu></sidemenu>
+      </div>
+      <div class="col-sm-11 list">
+        <div class="header row">
+          <div class="col-sm-4">
+            <p *ngIf="lenovoAgent">Lenovo Agent</p>
+            <p *ngIf="!lenovoAgent">Admin</p>
+          </div>
+          <div class="col-sm-7">
+            <div class=" search">
+              <div class="col-sm-6">
+                <select [(ngModel)]="searchOption">
+                  <option selected value=1 >Ticket Id</option>
+                  <option value=3>Customer</option>
+                  <option value=4>Email</option>
+                  <option value=8>Type</option>  
+                  <option value=9>Group</option>              
+                  <option value=5>Created Date</option>
+                  <option value=6>Social Discovery</option> 
+                  <option value=7>Customer Response</option>
+                  <option value=2>Status</option>            
+                </select>
+    
+              
+              </div>
+              <div class="col-sm-6 searchVal">
+                <input #myInput placeholder="Enter Ticket Id" (input)="filterItem(myInput.value)" *ngIf="searchOption ==1">
+                <select #myInput (input)="filterItem(myInput.value)" *ngIf="searchOption ==2">
+                  <option value="1">All</option>
+                  <option value="2">Open</option>
+                  <option value="3">Pending</option>
+                  <option value="4">Resolved</option>
+                  <option value="5">Closed</option>
+                  <option value="6">Waiting on Customer</option>
+                </select>
+                <input #myInput placeholder="Customer" (input)="filterItem(myInput.value)" *ngIf="searchOption ==3">
+                <input #myInput placeholder="Email" (input)="filterItem(myInput.value)" *ngIf="searchOption == 4">
+                <!-- <input #myInput placeholder="Date" (input)="filterItem(myInput.value)" *ngIf="searchOption == 5"> -->
+                <!-- <input #myInput placeholder="Date" (input)="filterItem(myInput.value)" *ngIf="searchOption == 5"> -->
+                <ng-datepicker #myInput class="date-picker" [(ngModel)]="date" (click)="filterItem(myInput.value)" *ngIf="searchOption == 5"></ng-datepicker>
+                <select #myInput (input)="filterItem(myInput.value)" *ngIf="searchOption ==6">
+                    <option value="4">All</option>
+                    <option value="3">Discovery Inprogress</option>
+                    <option value="2">Discovery for Review</option>
+                    <option value="1">Discovery for Request</option>
+                </select>
+                <select #myInput (input)="filterItem(myInput.value)" *ngIf="searchOption ==7">
+                    <option value="4">All</option>
+                    <option value="1">VOC Waiting</option>
+                    <option value="2">VOC Viewed</option>
+                    <option value="3">VOC Responded</option>
+                </select>
+                <select #myInput (input)="filterItem(myInput.value)" *ngIf="searchOption ==8">
+                    <option value=4>All</option>
+                    <option value=1>Customer Service</option>
+                    <option value=2>Marketing Services</option>
+                    <option value=3>Others</option>
+                </select>
+                <select #myInput (input)="filterItem(myInput.value)" *ngIf="searchOption ==9">
+                  <option value=1>All</option>
+                  <option *ngFor="let item of groupList" value={{item.freshdesk_group_id}}>{{item.name}}</option>
+              </select>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ticket-head">
+          <div class="col-sm-12">
+            <div class="pull-right new-ticket">
+              <p class="synch">
+                <span>Total Tickets : {{myTickets.length}}</span>
+                <button class="btn btn-info btn-bold" (click)="checkTicketStatus(true)"> Sync Status </button>
+                <button class="btn btn-info btn-bold" (click)="syncAllTicketTransactions()"> Sync All </button>
+                <button class="btn btn-info btn-bold" (click)="createNewTicket()"> Create New ticket </button>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row ticket-table"> 
+          <table class="table ticket-table" [mfData]="myTickets" #mf="mfDataTable" [mfRowsOnPage]="7" [mfSaveRowsOnPage]="true" >
+            <thead>
+              <tr> 
+                <th> <mfDefaultSorter by="sno" [mfShowSortableArrows]="true">S.no</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="ticcketId">VOC Ticket ID</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="customer">Customer</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="type">Type</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="group">Group</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="createDate">Created Date</mfDefaultSorter></th>
+                <!-- <th> <mfDefaultSorter by="viewForm">Customer Complaint</mfDefaultSorter></th> -->
+                <th> <mfDefaultSorter by="sd">Social Discovery</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="response">Customer Response</mfDefaultSorter></th>
+                <th> <mfDefaultSorter by="statu">e-Ticket Status</mfDefaultSorter></th>
+                <!-- <th class="link-pointer" (click)="syncAllTicketTransactions()"> Sync</th> -->
+                <th> <mfDefaultSorter by="action">e-Ticket History</mfDefaultSorter></th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of mf.data; let i = index"> 
+                <td>{{myTickets.indexOf(item) + 1}}</td>
+                <td>VOC-{{item.ticket_id}}</td>
+                <td>{{item.customer_name}}
+                    <br>
+                    <span class="email" *ngIf="item.customer_respond == 1 || item.customer_respond == 2">{{item.email}}</span> 
+                </td>
+                <!-- <td>{{item.service_type_label}}</td> -->
+
+                <td *ngIf="item.service_type_label">{{item.service_type_label}}</td>
+                <td *ngIf="!item.service_type_label">--</td>
+
+                <td *ngIf="item.group_name">{{item.group_name}}</td>
+                <td *ngIf="!item.group_name">--</td>
+                <td>{{item.created_on}}</td>
+                <!-- <td (click)="openViewTicket(item)" ><a class="view link-pointer">View</a></td> -->
+                <td *ngIf="item.discover_status==0" class="link-pointer blue" (click)="requestSD(item.ticket_id)">Discovery Request</td>
+                <td *ngIf="item.discover_status==1 && item.discovery_ticket_status==0" class="red">Discovery Inprogress</td>
+                <td *ngIf="item.discover_status==1 && item.discovery_ticket_status==1" (click)="getSocialDiscovery(item)" class="link-pointer green">Discovery for Review</td>
+                <td (click)="getCutomerResponse(item.ticket_id)" *ngIf="item.customer_respond == 0 && item.customer_view == 0" class="link-pointer red">VOC Waiting</td>
+                <td (click)="getCutomerResponse(item.ticket_id)" *ngIf="item.customer_respond == 0 && item.customer_view == 1" class="link-pointer blue">VOC Viewed</td>
+                <!-- <td (click)="getCutomerResponse(item.ticket_id)" *ngIf="item.customer_respond == 1" class="link-pointer green">VOC Viewed</td> -->
+                <td (click)="getCutomerResponse(item.ticket_id)" *ngIf="item.customer_respond == 1" class="link-pointer green">VOC Responded</td>
+                <td (click)="getCutomerResponse(item.ticket_id)" *ngIf="item.customer_respond == 2" class="link-pointer dark-red">VOC Direct</td>
+                <td *ngIf="item.customer_view == 2" class="link-pointer green">KB Resolved</td>
+                <td *ngIf="item.ticket_status == 2">Open</td>
+                <td *ngIf="item.ticket_status == 3">Pending</td>
+                <td *ngIf="item.ticket_status == 4">Resolved</td>
+                <td *ngIf="item.ticket_status == 5">Closed</td>
+                <td *ngIf="item.ticket_status == 6">Waiting on Customer</td>
+                <td class="link-pointer" *ngIf="item.ticket_status == 7" (click)="openApproveTicket(item)">Waiting to approve</td>
+                <td *ngIf="item.ticket_status == 8">Rejected</td>
+                
+                <!-- <td (click)="getFreshDeskTicketsAndSync(item, 1)" class="link-pointer green">Sync</td> -->
+                <!-- <td (click)="viewTicket(item)" class="link-pointer" [ngClass]="(item.ticket_details_count > 0) ? 'green' : 'grey'">View</td> -->
+                <!-- <td class="sync" *ngIf="item.ticket_status == 7;else elseBlock"> -->
+                <td class="link-pointer sync" (click)="viewTicket(item)">
+                    <img *ngIf="(item.ticket_details_count > 0)"  src="assets/icons/view.png" alt="">
+                    <img *ngIf="!(item.ticket_details_count > 0)" src="assets/icons/view-hide.png" alt="">
+                </td>
+                <!-- <ng-template #elseBlock>
+                    <td (click)="viewTicket(item)" class="link-pointer sync">
+                        <img *ngIf="(item.ticket_details_count > 0)"  src="assets/icons/view.png" alt="">
+                        <img *ngIf="!(item.ticket_details_count > 0)" src="assets/icons/view-hide.png" alt="">
+                    </td>
+                </ng-template> -->
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="11"><mfBootstrapPaginator [rowsOnPageSet]="[5,7]"></mfBootstrapPaginator></td>
+              </tr>
+            </tfoot>
+          </table>
+          <p *ngIf="myTickets.length == 0 " class="no-data">{{msg}}</p>
+        <div class="custom-toast" *ngIf="customToastMsg"><p>{{customToastMsg}}</p></div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()" >&times;</button>
+        <p>Kewords</p>
+      </div>
+
+      <div class="resMessage text-center" *ngIf="resMessage">
+        <div  [innerHTML]="resMessage"></div>
+      </div>
+
+      <div class="modal-body form-section" *ngIf="!resMessage">
+          <div class="col-md-12" *ngFor="let item of kewords">
+            <div class="form-group">
+              <ul>
+                <li>{{item.kb_keyword}}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row smt">
+              <!-- <input type="submit" class="btn btn-info" value="Update" (click)="updateReport()"> -->
+          </div>  
+      </div>
+  </div> 
+</div>    
+  

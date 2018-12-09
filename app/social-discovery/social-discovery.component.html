@@ -1,0 +1,96 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header header">
+          <button type="button" class="close" (click)="close()" >&times;</button>
+          <!-- <div class="row"> -->
+             <div class="eye link-pointer" (click)="openViewTicket(socialDicovery)"></div>
+          <!-- </div> -->
+          <p>Social Discovery Form</p> 
+        </div>
+        <div class="resMessage text-center" *ngIf="resMessage">
+            <div  [innerHTML]="resMessage"></div>
+            <button type="button" class="close" (click)="closeMessage()"><i class="ace-icon fa fa-times"></i>X</button>
+        </div>
+        <div class="modal-body popup-content" *ngIf="!resMessage">
+            <div class="row">
+              <div class="col-sm-6">
+                <span>Customer Name <em>*</em></span>
+              </div>
+              <div class="col-sm-6">
+                <input [(ngModel)]="socialDicovery.customer_name" type="text" [disabled]="onlyView" #name="ngModel" required>
+                <p class="url"  *ngIf="!name.valid && !name.pristine">Please enter name</p>
+              </div>
+            </div>
+            <div class="row postNotes">
+                <span>Notes <em>*</em></span>
+                <textarea name="" id="" rows="6" placeholder="Please enter the Notes to post on Social Media" [(ngModel)]="socialDicovery.notes" [disabled]="onlyView" #notes="ngModel" required></textarea>
+                <p *ngIf="!notes.valid && !notes.pristine">Please enter notes</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                  <span>Complaint Url <em>*</em></span>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" [(ngModel)]="socialDicovery.complaint_url" [disabled]="onlyView" #url="ngModel" required/>
+                  <p class="url" *ngIf="!url.valid && !url.pristine">Please enter url</p>
+                </div>
+            </div>
+            <div class="row preview">
+                <div class="col-sm-6">
+                  <span>Preview as Customer <em>*</em></span>
+                </div>
+                <div class="col-sm-6">
+                  <button (click)="getCutomerResponse(socialDicovery.ticket_id)">Preview</button>
+                 </div>
+            </div>
+            <div class="row rating">
+                <div class="col-sm-6">
+                  <span>Dangerometer Rating <em>*</em></span>
+                </div>
+                <div class="col-sm-6">
+                  <rating [(ngModel)]="socialDicovery.rating" [max]="5" #rating="ngModel"  required> </rating>
+                  <p *ngIf="!rating.valid && !rating.pristine">Please select rating</p>
+                </div>
+            </div>
+            <div class="row behaviour">
+                  <span>Observed Behaviour <em>*</em></span>
+            </div>
+            <div class="row behaviour-input">
+                <textarea [(ngModel)]="socialDicovery.behaviour"  rows="6" placeholder="Please enter Observed behaviour" [disabled]="onlyView" #behaviour="ngModel" required></textarea>
+                <p *ngIf="!behaviour.valid && !behaviour.pristine">Please enter behaviour</p>
+            </div>
+            <div class="row">
+                <span>Reason <em>*</em></span>
+            </div>
+            <div class="row reason">
+                <textarea [(ngModel)]="socialDicovery.reason" placeholder="Please enter Reason" rows="4" [disabled]="onlyView" #reason="ngModel" required ></textarea> 
+                <p *ngIf="!reason.valid && !reason.pristine">Please enter reason</p>
+            </div>
+            <div  *ngFor="let link of socialDicovery.links;let i = index">
+              <div class="link row">
+                <div class="col-sm-3">
+                    <select [(ngModel)]="link.social_media_id" [disabled]="onlyView">
+                        <option value="1">Facebook</option>
+                        <option value="2">Twitter</option>
+                        <option value="3">LinkedIn</option>
+                        <option value="4">Instagram</option>
+                        <option value="5">Others</option>
+                      </select>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" placeholder="Enter Link" [(ngModel)]="link.url" [disabled]="onlyView">
+                </div>
+                <div class="col-sm-2" *ngIf="!onlyView">
+                    <span class="glyphicon glyphicon-plus pointer" (click)="addLink(i)"></span>
+                    <span (click)="deleteLink(i)" class="pointer" *ngIf="i>0"><b>&#x2716;</b></span>
+                </div>
+              </div>
+            </div>
+            <div class="custom-toast" *ngIf="customToast"><p>{{customToastMsg}}</p></div>
+            <div class="row post" *ngIf="!onlyView">
+                <button (click)="createDisovery()" *ngIf="!update && !created">Post to Lenovo Agent</button>
+                <button (click)="updateDiscovery()" *ngIf="update">Update</button>
+            </div>  
+        </div>
+  </div>
+</div>
